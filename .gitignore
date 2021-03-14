@@ -3,3 +3,5 @@
 Assembly-CSharp.csproj
 TicTacToeAI.sln
 obj/
+.DS_Store
+.DS_Store?
