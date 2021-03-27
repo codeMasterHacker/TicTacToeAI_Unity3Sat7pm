@@ -2,6 +2,7 @@
 .vsconfig
 Assembly-CSharp.csproj
 TicTacToeAI.sln
+TicTacToeAI_Unity3Sat7pm.sln
 obj/
 .DS_Store
 .DS_Store?

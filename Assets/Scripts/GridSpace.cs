@@ -7,7 +7,6 @@ public class GridSpace : MonoBehaviour
 {
     public Button button;
     public Text buttonText;
-    public string playerSide;
 
     private GameController gameController;
 
@@ -18,8 +17,9 @@ public class GridSpace : MonoBehaviour
 
     public void SetSpace()
     {
-        buttonText.text = playerSide;
+        buttonText.text = gameController.GetPlayerSide();
         button.interactable = false;
+        gameController.EndTurn();
     }
 
     // Start is called before the first frame update
