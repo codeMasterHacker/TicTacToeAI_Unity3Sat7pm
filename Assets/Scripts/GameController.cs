@@ -152,4 +152,87 @@ public class GameController : MonoBehaviour
             buttonList[i].text = "";
         }
     }
+
+    public int FindBestMove()
+    {
+        int bestVal = -1000;
+        int bestMove = -1;
+
+        for (int i = 0; i < buttonList.Length; i++)
+        {
+            if (buttonList[i].text == "")
+            {
+                buttonList[i].text = computer;
+
+                int moveVal = MiniMax(false);
+
+                buttonList[i].text = "";
+
+                if (moveVal > bestVal)
+                {
+                    bestMove = i;
+                    bestVal = moveVal;
+                }
+            }
+        }
+
+        return bestMove;
+    }
+
+    private int MiniMax(bool isMax)
+    {
+        int score = evaluate();
+
+        if (score == 10)
+        {
+            return score;
+        }
+
+        if (score == -10)
+        {
+            return score;
+        }
+
+        if (IsMovesLeft() == false)
+        {
+            return 0;
+        }
+
+        if (isMax)
+        {
+            int best = -1000;
+
+            for (int i = 0; i < buttonList.Length; i++)
+            {
+                if (buttonList[i].text == "")
+                {
+                    buttonList[i].text = computer;
+
+                    best = Mathf.Max(best, MiniMax(!isMax));
+
+                    buttonList[i].text = "";
+                }
+            }
+
+            return best;
+        }
+        else
+        {
+            int best = 1000;
+
+            for (int i = 0; i < buttonList.Length; i++)
+            {
+                if (buttonList[i].text == "")
+                {
+                    buttonList[i].text = user;
+
+                    best = Mathf.Min(best, MiniMax(!isMax));
+
+                    buttonList[i].text = "";
+                }
+            }
+
+            return best;
+        }
+    }
 }
